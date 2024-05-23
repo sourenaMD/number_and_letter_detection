@@ -17,7 +17,8 @@ for index, row in data.iterrows():
 re_shaped = []
 for i in range(0 , len(list_of_values) , 64):
     re_shaped.append(np.reshape(np.array(list_of_values[i : i + 64]), (8 , 8)))
-print(re_shaped[2])
+print(re_shaped[0])
+print(re_shaped[1])
 
 # counting the zeros and ones of each row
 zeros_of_rows = []
@@ -147,22 +148,38 @@ for i in range(0 ,len(list_of_values) ,64):
         second_list.append(list_of_values[j + 3 : j + 6])
         third_list.append(list_of_values[j + 6 : j + 8])
 first_list_numbers = []
+second_list_numbers = []
+third_list_numbers = []
 for i in range(0 ,len(first_list) ,8):
     for j in range(i ,i + 8 , 2):
         for k in first_list[j : j + 2]:
             c= sum(1 for x in k if x != 0)
             first_list_numbers.append(c)
-second_list_numbers = []
-for i in range(0 ,len(second_list) ,8):
-    for j in range(i ,i + 8 , 2):
         for k in second_list[j : j + 2]:
             c= sum(1 for x in k if x != 0)
             second_list_numbers.append(c)
-third_list_numbers = []
-for i in range(0 ,len(third_list) ,8):
-    for j in range(i ,i + 8 , 2):
         for k in third_list[j : j + 2]:
             c= sum(1 for x in k if x != 0)
             third_list_numbers.append(c)
+ARR_1 = []
+ARR_2 = []
+ARR_3 = []
+for i in range(0 ,len(first_list_numbers) ,2):
+    ARR_1.append(sum(first_list_numbers[i : i + 2]) / 6)
+    ARR_2.append(sum(second_list_numbers[i : i + 2]) / 6)
+    ARR_3.append(sum(third_list_numbers[i : i + 2]) / 4)
+total_ARRs_of_each_matrix = []
+for i in range(0 ,len(ARR_1) ,4):
+    total = []
+    total.append(ARR_1[i : i +4])
+    total.append(ARR_2[i : i +4])
+    total.append(ARR_3[i : i +4])
+    total_ARRs_of_each_matrix.append(total)
+print(ARR_1[0:12])
+print(ARR_2[0:12])
+print(ARR_3[0:12])
+print(total_ARRs_of_each_matrix[0:3])
+
+        
 
         
