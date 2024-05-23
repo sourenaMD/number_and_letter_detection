@@ -17,7 +17,7 @@ for index, row in data.iterrows():
 re_shaped = []
 for i in range(0 , len(list_of_values) , 64):
     re_shaped.append(np.reshape(np.array(list_of_values[i : i + 64]), (8 , 8)))
-print(re_shaped[0])
+print(re_shaped[2])
 
 # counting the zeros and ones of each row
 zeros_of_rows = []
@@ -137,56 +137,32 @@ for i in range(0 , len(list_of_values) , 64):
     zeros_of_minor_diameter.append(minor_diameter_zeros)
     non_zeros_of_minor_diameter.append(minor_diameter_non_zeros)
 
+# do the ARR algorithm on the matrixes
+first_list = []
+second_list = []
+third_list = []
+for i in range(0 ,len(list_of_values) ,64):
+    for j in range(i ,i + 64 ,8):
+        first_list.append(list_of_values[j : j + 3])
+        second_list.append(list_of_values[j + 3 : j + 6])
+        third_list.append(list_of_values[j + 6 : j + 8])
+first_list_numbers = []
+for i in range(0 ,len(first_list) ,8):
+    for j in range(i ,i + 8 , 2):
+        for k in first_list[j : j + 2]:
+            c= sum(1 for x in k if x != 0)
+            first_list_numbers.append(c)
+second_list_numbers = []
+for i in range(0 ,len(second_list) ,8):
+    for j in range(i ,i + 8 , 2):
+        for k in second_list[j : j + 2]:
+            c= sum(1 for x in k if x != 0)
+            second_list_numbers.append(c)
+third_list_numbers = []
+for i in range(0 ,len(third_list) ,8):
+    for j in range(i ,i + 8 , 2):
+        for k in third_list[j : j + 2]:
+            c= sum(1 for x in k if x != 0)
+            third_list_numbers.append(c)
 
-
-
-
-
-
-
-
-
-
-
-
-
-# # do the ARR algorithm on the matrixes
-# list_of_ARRs = []
-# ARRs = []
-# for i in range(0 , len(list_of_values) , 64):
-#     matrix = list_of_values[i : i + 64]
-#     divide_0_list = []
-#     divide_1_list = []
-#     divide_2_list = []
-#     second_divide_0_list = []
-#     second_divide_1_list = []
-#     second_divide_2_list = []
-#     total_0 = []
-#     total_1 = []
-#     total_2 = []
-#     for j in range(4):
-#         divide_1_list = matrix[j + (j * 15) : j + (j * 15) + 3]
-#         total_1.append(divide_1_list)
-#         second_divide_1_list = matrix[j + (j * 15) + 8 : j + (j * 15) + 11]
-#         total_1.append(divide_1_list)
-#         divide_2_list = matrix[j + (j * 15) + 3 : j + (j * 15) + 6]
-#         total_2.append(divide_2_list)
-#         second_divide_2_list = matrix[j + (j * 15) + 11 : j + (j * 15) + 14] 
-#         total_2.append(divide_2_list)
-#         divide_0_list = matrix[j + (j * 15) + 6 : j + (j * 15) + 8]
-#         total_0.append(divide_0_list)
-#         second_divide_0_list = matrix[j + (j * 15) + 14 : j + (j * 15) + 16]
-#         total_0.append(divide_0_list)
-#         divide_0_non_zeros = 0
-#         divide_1_non_zeros = 0
-#         divide_2_non_zeros = 0
-#         divide_1_non_zeros = sum(1 for x in divide_1_list if x != 0) / 6
-#         ARRs.append(divide_1_non_zeros)
-#         divide_2_non_zeros = sum(1 for x in divide_2_list if x != 0) / 6
-#         ARRs.append(divide_2_non_zeros)
-#         divide_0_non_zeros = sum(1 for x in divide_0_list if x != 0) / 4
-#         ARRs.append(divide_0_non_zeros)
-# for i in range(0,len(ARRs),12):
-#     list_of_ARRs.append(ARRs[i : i + 12])
-# print(list_of_ARRs[1])
-    
+        
