@@ -17,7 +17,6 @@ for index, row in data.iterrows():
 re_shaped = []
 for i in range(0 , len(list_of_values) , 64):
     re_shaped.append(np.reshape(np.array(list_of_values[i : i + 64]), (8 , 8)))
-print(re_shaped[0])
 print(re_shaped[1])
 
 # counting the zeros and ones of each row
@@ -171,15 +170,23 @@ for i in range(0 ,len(first_list_numbers) ,2):
 total_ARRs_of_each_matrix = []
 for i in range(0 ,len(ARR_1) ,4):
     total = []
-    total.append(ARR_1[i : i +4])
-    total.append(ARR_2[i : i +4])
-    total.append(ARR_3[i : i +4])
+    total.append(ARR_1[i : i + 4])
+    total.append(ARR_2[i : i + 4])
+    total.append(ARR_3[i : i + 4])
     total_ARRs_of_each_matrix.append(total)
-print(ARR_1[0:12])
-print(ARR_2[0:12])
-print(ARR_3[0:12])
-print(total_ARRs_of_each_matrix[0:3])
 
-        
+# do the transfer of 0 to 1 and reverse
+column_values = []
+for i in range(0 ,len(list_of_values) ,64):
+    present_values = []
+    for j in range(0 ,8):
+        present_values.append(list_of_values[i + j : i + 64 : 8])
+    column_values.append(present_values)
+print(column_values[0])
+row_values = []
+for i in range(0 ,len(list_of_values) ,64):
+    present_values = []
+    for j in range(0 ,8):
+        present_values.append(list_of_values[i + j * 8 : i + (j + 1) * 8])
+    row_values.append(present_values)
 
-        
